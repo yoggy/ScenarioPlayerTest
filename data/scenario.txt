@@ -1,11 +1,11 @@
 # comment 1       
-1 printTest0            #comment...
+1 printTest0            #comment test...
 2 printTest1  i:123
 
 # comment 2
 3 printTest2 s:hoge  s:fuga
-3 printTest3 s:a  s:b  s:c
+* printTest3 s:a  s:b  s:c
 
 # comment 3
 4 printTest2  f:1.0  f:2.0
-4 printTest3  s:d   s:e   s:f
+* printTest3  s:d   s:e   s:f

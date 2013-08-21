@@ -46,6 +46,7 @@ class SenarioPlayer {
   PApplet papplet;
   HashMap map = new HashMap();
   int max_tick = -1;
+  int last_tick = -1;
   boolean debug_mode = false;
 
   SenarioPlayer(PApplet papplet) {
@@ -108,8 +109,16 @@ class SenarioPlayer {
     }
 
     // parse line
-    int tick = int(words[0]);
+    int tick;
+    if ("*".equals(words[0])) {
+      tick = last_tick;
+    }
+    else {
+      tick = int(words[0]);
+    }
+
     String function_name = words[1];
+
     String [] args = null;
     int argc = words.length - 2;
     if (argc > 0) {
@@ -117,7 +126,7 @@ class SenarioPlayer {
       for (int j = 0; j < argc; ++j) {
         String w = words[j + 2];
         if (w.length() == 0) continue;
-        if ("#".equals(w.substring(0, 1))) continue;
+        if ("#".equals(w.substring(0, 1))) break;
         v.add(w);
       }
       args = new String[v.size()];
@@ -132,6 +141,8 @@ class SenarioPlayer {
     catch(Exception e) {
       return false;
     }
+
+    last_tick = tick;
 
     return true;
   }
