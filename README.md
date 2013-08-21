@@ -28,10 +28,12 @@ SenalioPlayerTest.pde
       tick ++:
     }
 
+    // call at tick=1, 10
     void testFunc() {
       println("testFunc()");
     }
 
+    // call at tick=3, 7
     void testFunc2(String arg1, String arg2) {
       println("testFunc2() : arg1="+arg1+","arg2="+arg2);
     }
