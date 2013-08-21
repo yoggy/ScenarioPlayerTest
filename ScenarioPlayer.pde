@@ -110,8 +110,11 @@ class SenarioPlayer {
 
     // parse line
     int tick;
-    if ("*".equals(words[0])) {
+    if ("=".equals(words[0])) {
       tick = last_tick;
+    }
+    else if ("+".equals(words[0])) {
+      tick = last_tick + 1;
     }
     else {
       tick = int(words[0]);
@@ -185,7 +188,7 @@ class SenarioPlayer {
   }
 
   void enter(int tick) {
-    if (debug_mode) println("enter; tick=" + tick);
+    if (debug_mode) println("======== enter; tick=" + tick + "========");
     if (map.containsKey(tick)) {
       Command [] cmds = getCommands(tick);
       for (int i = 0; i < cmds.length; ++i) {
@@ -264,19 +267,19 @@ class Command {
           String type = args[i].substring(0, 1);
           println(type);
           if ("s".equals(type)) {
-            this.args[i] = args[i].substring(2, args[i].length()-1);
+            this.args[i] = args[i].substring(2, args[i].length());
             obj_args[i] = String.class;
           }
           else if ("i".equals(type)) {
-            this.args[i] = int(args[i].substring(2, args[i].length()-1));
+            this.args[i] = int(args[i].substring(2, args[i].length()));
             obj_args[i] = int.class;
           }
           else if ("f".equals(type)) {
-            this.args[i] = float(args[i].substring(2, args[i].length()-1));
+            this.args[i] = float(args[i].substring(2, args[i].length()));
             obj_args[i] = float.class;
           }
           else if ("b".equals(type)) {
-            this.args[i] = "true".equals(args[i].substring(2, args[i].length()-1)) ? true : false;
+            this.args[i] = "true".equals(args[i].substring(2, args[i].length())) ? true : false;
             obj_args[i] = boolean.class;
           }
         }

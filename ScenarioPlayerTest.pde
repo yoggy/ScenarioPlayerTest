@@ -50,3 +50,7 @@ void printTest3(String arg1, String arg2, String arg3) {
   println("printTest3: arg1=" + arg1 + ", arg2=" + arg2 + ", arg3=" + arg3);
 }
 
+void printTest4(int arg1) {
+  println("printTest4: arg1=" + arg1);
+}
+

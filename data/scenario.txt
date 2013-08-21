@@ -2,10 +2,17 @@
 1 printTest0            #comment test...
 2 printTest1  i:123
 
-# comment 2
+# same tick operator test
 3 printTest2 s:hoge  s:fuga
-* printTest3 s:a  s:b  s:c
+= printTest3 s:a  s:b  s:c
+= printTest4 i:3
 
-# comment 3
+# different type method call test
 4 printTest2  f:1.0  f:2.0
-* printTest3  s:d   s:e   s:f
+= printTest3  s:d   s:e   s:f
+
+# increment operator test
+5 printTest4 i:5
++ printTest4 i:6
++ printTest4 i:7
++ printTest4 i:8
