@@ -1,0 +1,11 @@
+# comment 1       
+1 printTest0            #comment...
+2 printTest1  123
+
+# comment 2
+3 printTest2 hoge  fuga
+3 printTest3 a  b       c
+
+# comment 3
+  4 printTest2  fuga  sample
+  4 printTest3   d     e    f
