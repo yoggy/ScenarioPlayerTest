@@ -5,6 +5,7 @@ int tick = 0;
 
 void setup() {
   scenario = new SenarioPlayer(this);
+  scenario.debugMode(true);
   if (scenario.load("scenario.txt") == false) {
     println("scenario.load() failed...filename=scenario.txt");
     exit();
@@ -33,11 +34,15 @@ void printTest0() {
   println("printTest0: ");
 }
 
-void printTest1(String arg1) {
+void printTest1(int arg1) {
   println("printTest1: arg1=" + arg1);
 }
 
 void printTest2(String arg1, String arg2) {
+  println("printTest2: arg1=" + arg1 + ", arg2=" + arg2);
+}
+
+void printTest2(float arg1, float arg2) {
   println("printTest2: arg1=" + arg1 + ", arg2=" + arg2);
 }
 

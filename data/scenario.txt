@@ -1,11 +1,11 @@
 # comment 1       
 1 printTest0            #comment...
-2 printTest1  123
+2 printTest1  i:123
 
 # comment 2
-3 printTest2 hoge  fuga
-3 printTest3 a  b       c
+3 printTest2 s:hoge  s:fuga
+3 printTest3 s:a  s:b  s:c
 
 # comment 3
-  4 printTest2  fuga  sample
-  4 printTest3   d     e    f
+4 printTest2  f:1.0  f:2.0
+4 printTest3  s:d   s:e   s:f

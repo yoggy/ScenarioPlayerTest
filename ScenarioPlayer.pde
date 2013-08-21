@@ -4,8 +4,8 @@
 //  == how to use
 //  ==== data/scenario.txt
 //      1 testFunc
-//      3 testFunc2 string1 string2
-//      7 testFunc2 string3 string4
+//      3 testFunc2 s:string1 s:string2
+//      7 testFunc2 s:string3 s:string4
 //      10 testFunc
 //    
 //  ==== SenalioPlayerTest.pde
@@ -36,8 +36,8 @@
 //  
 //    example: 
 //      1 printTest0
-//      2 testFunction 123
-//      3 testFunction2  123 abc 
+//      2 testFunction   i:123
+//      3 testFunction2  i:123 s:abc f:1.0
 //
 import java.util.*;
 import java.lang.reflect.*;
@@ -229,7 +229,7 @@ class Command {
   PApplet papplet;
   int tick;
   String function_name;
-  String [] args;
+  Object [] args;
   boolean is_called;
 
   Method method;
@@ -238,18 +238,39 @@ class Command {
     this.papplet = papplet;
     this.tick = tick;
     this.function_name = function_name;
-    this.args = args;
     this.is_called = false;
+
+    println(args);
 
     try {
       Class [] obj_args = null;
-      if (this.args != null) {
+      this.args = null;
+      if (args != null) {
+        this.args = new Object[args.length];
         obj_args = new Class[args.length];
+
         for (int i = 0; i < args.length; ++i) {
-          obj_args[i] = String.class;
+          String type = args[i].substring(0, 1);
+          println(type);
+          if ("s".equals(type)) {
+            this.args[i] = args[i].substring(2, args[i].length()-1);
+            obj_args[i] = String.class;
+          }
+          else if ("i".equals(type)) {
+            this.args[i] = int(args[i].substring(2, args[i].length()-1));
+            obj_args[i] = int.class;
+          }
+          else if ("f".equals(type)) {
+            this.args[i] = float(args[i].substring(2, args[i].length()-1));
+            obj_args[i] = float.class;
+          }
+          else if ("b".equals(type)) {
+            this.args[i] = "true".equals(args[i].substring(2, args[i].length()-1)) ? true : false;
+            obj_args[i] = boolean.class;
+          }
         }
       }
-
+      println(obj_args);
       method = papplet.getClass().getMethod(function_name, obj_args);
     }
     catch(Exception e) {
