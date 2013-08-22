@@ -87,7 +87,7 @@ class SenarioPlayer {
 
     if (debug_mode) {
       println("======== load scenario ========");
-      println(scenario.toString());
+      println(toString());
       println("===============================");
     }
     
