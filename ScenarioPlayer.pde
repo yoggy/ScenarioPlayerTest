@@ -106,11 +106,19 @@ class ScenarioPlayer {
 
     String striped_line = strip(line);
     String [] words = striped_line.split(" ", 0);
-
+    
     // check line
     if (words == null || words.length == 0) return true;
     if (words[0].length() == 0) return true;               // null line
     if ("#".equals(words[0].substring(0, 1))) return true; // comment
+
+    // remove 0 width string...
+    Vector vw = new Vector();
+    for (int i = 0; i < words.length; ++i) {
+      if (words[i].length() == 0) continue;
+      vw.add(words[i]);
+    }
+    words = (String[])vw.toArray(new String[0]);
     if (words.length < 2) {
       return false;
     }
@@ -261,8 +269,6 @@ class Command {
     this.function_name = function_name;
     this.is_called = false;
 
-    println(args);
-
     try {
       Class [] obj_args = null;
       this.args = null;
@@ -272,7 +278,6 @@ class Command {
 
         for (int i = 0; i < args.length; ++i) {
           String type = args[i].substring(0, 1);
-          println(type);
           if ("s".equals(type)) {
             this.args[i] = args[i].substring(2, args[i].length());
             obj_args[i] = String.class;
@@ -291,7 +296,6 @@ class Command {
           }
         }
       }
-      println(obj_args);
       method = papplet.getClass().getMethod(function_name, obj_args);
     }
     catch(Exception e) {

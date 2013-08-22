@@ -1,10 +1,10 @@
-SenarioPlayer scenario;
+ScenarioPlayer scenario;
 PFont font;
 
 int tick = 0;
 
 void setup() {
-  scenario = new SenarioPlayer(this);
+  scenario = new ScenarioPlayer(this);
   scenario.debugMode(true);
   if (scenario.load("scenario.txt") == false) {
     println("scenario.load() failed...filename=scenario.txt");
