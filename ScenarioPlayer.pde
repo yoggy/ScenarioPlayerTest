@@ -42,14 +42,15 @@
 import java.util.*;
 import java.lang.reflect.*;
 
-class SenarioPlayer {
+class ScenarioPlayer {
   PApplet papplet;
   HashMap map = new HashMap();
   int max_tick = -1;
   int last_tick = -1;
   boolean debug_mode = false;
+  String filename;
 
-  SenarioPlayer(PApplet papplet) {
+  ScenarioPlayer(PApplet papplet) {
     this.papplet = papplet;
   }
 
@@ -64,6 +65,10 @@ class SenarioPlayer {
   void clear() {
     map.clear();
     max_tick = -1;
+  }
+
+  boolean reload() {
+    return load(this.filename);
   }
 
   boolean load(String filename) {  
@@ -90,6 +95,8 @@ class SenarioPlayer {
       println(toString());
       println("===============================");
     }
+
+    this.filename = filename;
     
     return true;
   }
